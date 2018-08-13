@@ -11,4 +11,12 @@
 #nav-bar .logo {
     height: 80px;
     width: 80px;
+    float: left;
+}
+
+#nav-bar .header {
+    font-size: 2rem;
+    line-height: 80px;
+    float: left;
+    margin-left: 10px;
 }
