@@ -15,6 +15,7 @@ article {
     border-width: 2px;
     height: 11em;
     margin-bottom: 1em;
+    transition: 0.5s;
 }
 
 article:hover .handle {
@@ -36,6 +37,8 @@ article:hover h2 {
 
 article:hover i.material-icons {
     display: inline-block;
+    visibility: visible;
+    opacity: 1;
 }
 
 .handle {
@@ -43,6 +46,8 @@ article:hover i.material-icons {
     position: relative;
     top: -2.5em;
     right: -18em;
+    transition: 0.5s;
+
 }
 
 .profile-photo {
@@ -52,6 +57,8 @@ article:hover i.material-icons {
     height: 2.5em;
     width: 2.5em;
     border-radius: 0.5em;
+    transition: 0.5s;
+
 }
 
 .full-name {
@@ -61,11 +68,15 @@ article:hover i.material-icons {
     position: relative;
     top: 10px;
     left: 60px;
+    transition: 0.5s;
+
 }
 
 .tweet-container header {
     height: 50px;
     border-radius: 3px;
+    transition: 0.5s;
+
 }
 
 .tweet-text {
@@ -73,13 +84,18 @@ article:hover i.material-icons {
     height: 80px;
     margin-top: 0px;
     padding: 10px;
+    transition: 0.5s;
+
 }
 
 i.material-icons {
-    display: none;
+    /* display: none; */
     position: relative;
     right: -13em;
     top: -1.3em;
+    transition: 0.5s;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .tweet-container footer {
