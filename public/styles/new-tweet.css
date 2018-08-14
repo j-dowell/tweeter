@@ -1,5 +1,5 @@
 .container {
-    height: 800px;
+    display:table;
 }
 
 .new-tweet {
@@ -9,6 +9,7 @@
     border-color: rgb(143, 143, 143);
     border-style: solid;  
     border-width: 2px;
+    margin-bottom: 20px;
 }
 .new-tweet h2 {
     border-bottom:1px solid rgb(60, 60, 60);
