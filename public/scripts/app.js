@@ -55,36 +55,37 @@ const data = [
 
 $(document).ready(function() {
 
-    function createTweetElement(data) {
-        var today = new Date();
-        var todayMilliseconds = today.getTime();
-        var difference = todayMilliseconds - data.created_at;
-        var days = Math.round(difference / 86400000)
-        var $text = $("<article>").addClass("tweet");
-        var insert = `
-            <header>
-                <h2 class="full-name">${data.user.name}</h2>
-                <img src="${data.user.avatars.small}" class="profile-photo"></img>
-                <span class="handle">${data.user.handle}</span>
-            </header>
-                <p class="tweet-text">${data.content.text}</p>
-            <footer>${days} days ago</footer>
-            <i class="material-icons">favorite</i>
-            <i class="material-icons">flag</i>
-            <i class="material-icons">cached</i>
-            `
-        $text.html(insert);
-        return $text
-    }
-    // var $tweet = createTweetElement(tweetData);
-    // console.log($tweet);
-    // $('.tweet-container').append($tweet);
+  function getDayDifference(input) {
+    var today = new Date();
+    var todayMilliseconds = today.getTime();
+    var difference = todayMilliseconds - input;
+    var days = Math.round(difference / 86400000)
+    return days;
+  }
 
-    function renderTweets(input) {
-        input.forEach(function(item) {
-            var $tweet = createTweetElement(item);
-            $('.tweet-container').append($tweet);
-        })
-    }
-    renderTweets(data);
+  function createTweetElement(data) {
+      var days = getDayDifference(data.created_at);
+      var $text = $("<article>").addClass("tweet");
+      var insert = `
+          <header>
+              <h2 class="full-name">${data.user.name}</h2>
+              <img src="${data.user.avatars.small}" class="profile-photo"></img>
+              <span class="handle">${data.user.handle}</span>
+          </header>
+              <p class="tweet-text">${data.content.text}</p>
+          <footer>${days} days ago</footer>
+          <i class="material-icons">favorite</i>
+          <i class="material-icons">flag</i>
+          <i class="material-icons">cached</i>
+          `
+      $text.html(insert);
+      return $text
+  }
+  function renderTweets(input) {
+      input.forEach(function(item) {
+          var $tweet = createTweetElement(item);
+          $('.tweet-container').append($tweet);
+      })
+  }
+  renderTweets(data);
   })
