@@ -50,7 +50,6 @@ const data = [
       "created_at": 1461113796368
     }
   ];
-  
 
 
 $(document).ready(function() {
