@@ -105,6 +105,7 @@ $(document).ready(function() {
       success: function (data) {
         console.log('Submission was successful.');
         loadTweet();
+        $("form")[0].reset();
       },
       error: function (data) {
         console.log('An error occurred.');
