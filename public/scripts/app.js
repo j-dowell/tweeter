@@ -63,31 +63,31 @@ $(document).ready(function() {
   }
 
   function createTweetElement(data) {
-      var days = getDayDifference(data.created_at);
-      var $text = $("<article>").addClass("tweet");
-      var insert = `
-          <header>
-              <h2 class="full-name">${data.user.name}</h2>
-              <img src="${data.user.avatars.small}" class="profile-photo"></img>
-              <span class="handle">${data.user.handle}</span>
-          </header>
-              <p class="tweet-text">${data.content.text}</p>
-          <footer>${days} days ago</footer>
-          <i class="material-icons">favorite</i>
-          <i class="material-icons">flag</i>
-          <i class="material-icons">cached</i>
-          `
-      $text.html(insert);
-      return $text
+    var $text = $("<article>").addClass("tweet");
+    var days = getDayDifference(data.created_at);
+    var insert = `
+        <header>
+            <h2 class="full-name">${data.user.name}</h2>
+            <img src="${data.user.avatars.small}" class="profile-photo"></img>
+            <span class="handle">${data.user.handle}</span>
+        </header>
+            <p class="tweet-text">${data.content.text}</p>
+        <footer>${days} days ago</footer>
+        <i class="material-icons">favorite</i>
+        <i class="material-icons">flag</i>
+        <i class="material-icons">cached</i>
+        `
+    $text.html(insert);
+    return $text
   }
 
   function renderTweets(input) {
+    input.reverse();
       input.forEach(function(item) {
           var $tweet = createTweetElement(item);
           $('.tweet-container').append($tweet);
       })
   }
-  
 
   $('form').submit(function(event) {
     event.preventDefault();
@@ -110,8 +110,6 @@ $(document).ready(function() {
         console.log('An error occurred.');
       }
     })
- 
-    console.log(this)
   } else {
     alert('Invalid input')
   }
