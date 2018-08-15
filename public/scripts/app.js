@@ -89,7 +89,7 @@ $(document).ready(function() {
             <img src="${userAvatar}" class="profile-photo"></img>
             <div class="handle">${userHandle}</div>
         </header>
-            <p class="tweet-text">${escape(data.content.text)}</p>
+            <div id="text-container"><p class="tweet-text">${escape(data.content.text)}</p></div>
         <footer>${days} days ago</footer>
         <i class="material-icons">favorite</i>
         <i class="material-icons">flag</i>
@@ -109,7 +109,7 @@ $(document).ready(function() {
 
   $('form').submit(function(event) {
     event.preventDefault();
-
+    $('.error').slideUp(200);
     let form = $( this ).serialize();
     let counterHTML = $(this).children('.counter')
     let numCounter = Number(counterHTML.context.innerText);
@@ -124,7 +124,8 @@ $(document).ready(function() {
         console.log('Submission was successful.');
         loadTweet();
         $("form")[0].reset(); // Clears form input box after submission
-        $('span.counter').html('140');
+        $('span.counter').html('140'); // Resets counter
+        $('.error').slideUp(100);
       },
       error: function (data) {
         console.log('An error occurred.');
@@ -132,7 +133,8 @@ $(document).ready(function() {
     })
     console.log(counterHTML.context.innerText)
   } else {
-    alert('Invalid input')
+    // alert('Invalid input')
+    $('.error').slideDown(200);
   }
   })
 

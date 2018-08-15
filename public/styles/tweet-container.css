@@ -1,7 +1,8 @@
 .tweet-container {
     position: relative;
     margin-top: 10px;
-    width: 100%;
+    width: 400px;
+    box-sizing: border-box;
 }
 
 .tweet-container h2 {
@@ -103,3 +104,8 @@ i.material-icons {
     border-top-color: rgb(216, 216, 216);
     border-top-width: 1px;
 }
+
+#text-container {
+    word-wrap: break-word;
+    width: 100%; 
+  }

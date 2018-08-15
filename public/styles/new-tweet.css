@@ -32,3 +32,6 @@ p.tweet-text {
    right: -300px;
 }
 
+.error {
+    display: none;
+}
