@@ -124,11 +124,13 @@ $(document).ready(function() {
         console.log('Submission was successful.');
         loadTweet();
         $("form")[0].reset(); // Clears form input box after submission
+        $('span.counter').html('140');
       },
       error: function (data) {
         console.log('An error occurred.');
       }
     })
+    console.log(counterHTML.context.innerText)
   } else {
     alert('Invalid input')
   }
