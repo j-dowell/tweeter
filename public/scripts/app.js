@@ -87,13 +87,17 @@ $(document).ready(function() {
           $('.tweet-container').append($tweet);
       })
   }
-
   
-
 
   $('form').submit(function(event) {
     event.preventDefault();
+
     let form = $( this ).serialize();
+    let counterHTML = $(this).children('.counter')
+    let numCounter = Number(counterHTML.context.innerText);
+  
+    if (numCounter !== 140 && numCounter >= 0 && numCounter !== 'null') {
+
     $.ajax({
       type: "POST",
       url: "/tweets",
@@ -105,6 +109,9 @@ $(document).ready(function() {
         console.log('An error occurred.');
       }
     })
+  } else {
+    alert('Invalid input')
+  }
   })
 
   function loadTweets() {
