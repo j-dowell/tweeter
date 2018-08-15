@@ -55,7 +55,9 @@ const data = [
 $(document).ready(function() {
 
   $('.compose-button').on('click', function() {
-    $( '.new-tweet' ).slideToggle(400);
+    $( '.new-tweet' ).slideToggle(400, function() {
+      $('.text-input').focus();
+    });
   })
 
 
