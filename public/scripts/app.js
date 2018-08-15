@@ -54,6 +54,11 @@ const data = [
 
 $(document).ready(function() {
 
+  $('.compose-button').on('click', function() {
+    $( '.new-tweet' ).slideToggle(400);
+  })
+
+
   function getDayDifference(input) {
     var today = new Date();
     var todayMilliseconds = today.getTime();
@@ -141,5 +146,6 @@ $(document).ready(function() {
   }
 
   loadTweets()
+  
 
 })
