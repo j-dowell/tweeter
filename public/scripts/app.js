@@ -104,15 +104,25 @@ $(document).ready(function() {
       data: form,
       success: function (data) {
         console.log('Submission was successful.');
+        loadTweet();
       },
       error: function (data) {
         console.log('An error occurred.');
       }
     })
+ 
+    console.log(this)
   } else {
     alert('Invalid input')
   }
   })
+
+  function loadTweet() {
+    $.getJSON('/tweets', function(data) {
+      let $input = createTweetElement(data[data.length - 1]);
+      $('.tweet-container').prepend($input);
+    })
+  }
 
   function loadTweets() {
     $.getJSON('/tweets', function(data) {
