@@ -80,7 +80,7 @@ $(document).ready(function() {
         <header>
             <h2 class="full-name">${userName}</h2>
             <img src="${userAvatar}" class="profile-photo"></img>
-            <span class="handle">${userHandle}</span>
+            <div class="handle">${userHandle}</div>
         </header>
             <p class="tweet-text">${escape(data.content.text)}</p>
         <footer>${days} days ago</footer>

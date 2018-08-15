@@ -42,12 +42,12 @@ article:hover i.material-icons {
 }
 
 .handle {
+    text-align: end;
     color: rgb(104, 115, 118);
     position: relative;
-    top: -2.5em;
-    right: -18em;
+    top: -3.6em;
+    right: 0.5em;
     transition: 0.5s;
-
 }
 
 .profile-photo {
