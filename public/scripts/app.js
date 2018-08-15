@@ -83,28 +83,28 @@ $(document).ready(function() {
       return div.innerHTML;
     }
 
-    var insert = `
-        <header>
-            <h2 class="full-name">${userName}</h2>
-            <img src="${userAvatar}" class="profile-photo"></img>
-            <div class="handle">${userHandle}</div>
-        </header>
-            <div id="text-container"><p class="tweet-text">${escape(data.content.text)}</p></div>
-        <footer>${days} days ago</footer>
-        <i class="material-icons">favorite</i>
-        <i class="material-icons">flag</i>
-        <i class="material-icons">cached</i>
-        `
+    var insert = 
+      `<header>
+          <h2 class="full-name">${userName}</h2>
+          <img src="${userAvatar}" class="profile-photo"></img>
+          <div class="handle">${userHandle}</div>
+      </header>
+          <div id="text-container"><p class="tweet-text">${escape(data.content.text)}</p></div>
+      <footer>${days} days ago</footer>
+      <i class="material-icons">favorite</i>
+      <i class="material-icons">flag</i>
+      <i class="material-icons">cached</i>`
+
     $text.html(insert);
     return $text
   }
 
   function renderTweets(input) {
     input.reverse();
-      input.forEach(function(item) {
-          var $tweet = createTweetElement(item);
-          $('.tweet-container').append($tweet);
-      })
+    input.forEach(function(item) {
+        var $tweet = createTweetElement(item);
+        $('.tweet-container').append($tweet);
+    })
   }
 
   $('form').submit(function(event) {
@@ -115,41 +115,38 @@ $(document).ready(function() {
     let numCounter = Number(counterHTML.context.innerText);
   
     if (numCounter !== 140 && numCounter >= 0 && numCounter !== 'null') {
-
-    $.ajax({
-      type: "POST",
-      url: "/tweets",
-      data: form,
-      success: function (data) {
-        console.log('Submission was successful.');
-        loadTweet();
-        $("form")[0].reset(); // Clears form input box after submission
-        $('span.counter').html('140'); // Resets counter
-      },
-      error: function (data) {
-        console.log('An error occurred.');
-      }
-    })
-    console.log(counterHTML.context.innerText)
-  } else {
-    $('.error').delay(100).slideDown(200);
-  }
+      $.ajax({
+        type: "POST",
+        url: "/tweets",
+        data: form,
+        success: function (data) {
+          console.log('Submission was successful.');
+          loadNewTweet();
+          $("form")[0].reset(); // Clears form input box after submission
+          $('span.counter').html('140'); // Resets counter
+        },
+        error: function (data) {
+          console.log('An error occurred.');
+        }
+      })
+    } else {
+      $('.error').delay(100).slideDown(200);
+    }
   })
 
-  function loadTweet() {
+  function loadNewTweet() {
     $.getJSON('/tweets', function(data) {
       let $input = createTweetElement(data[data.length - 1]);
       $('.tweet-container').prepend($input);
     })
   }
 
-  function loadTweets() {
+  function loadAllTweets() {
     $.getJSON('/tweets', function(data) {
       renderTweets(data);
     })
   }
 
-  loadTweets()
-  
+  loadAllTweets()
 
 })
