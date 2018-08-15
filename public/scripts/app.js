@@ -64,14 +64,25 @@ $(document).ready(function() {
 
   function createTweetElement(data) {
     var $text = $("<article>").addClass("tweet");
+    var userName = data.user.name;
+    var userAvatar = data.user.avatars.small;
+    var userHandle = data.user.handle;
+    var userContent = data.content.text;
     var days = getDayDifference(data.created_at);
+
+    function escape(str) {
+      var div = document.createElement('div');
+      div.appendChild(document.createTextNode(str));
+      return div.innerHTML;
+    }
+
     var insert = `
         <header>
-            <h2 class="full-name">${data.user.name}</h2>
-            <img src="${data.user.avatars.small}" class="profile-photo"></img>
-            <span class="handle">${data.user.handle}</span>
+            <h2 class="full-name">${userName}</h2>
+            <img src="${userAvatar}" class="profile-photo"></img>
+            <span class="handle">${userHandle}</span>
         </header>
-            <p class="tweet-text">${data.content.text}</p>
+            <p class="tweet-text">${escape(data.content.text)}</p>
         <footer>${days} days ago</footer>
         <i class="material-icons">favorite</i>
         <i class="material-icons">flag</i>
@@ -105,7 +116,7 @@ $(document).ready(function() {
       success: function (data) {
         console.log('Submission was successful.');
         loadTweet();
-        $("form")[0].reset();
+        $("form")[0].reset(); // Clears form input box after submission
       },
       error: function (data) {
         console.log('An error occurred.');
