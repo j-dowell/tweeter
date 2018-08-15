@@ -109,7 +109,7 @@ $(document).ready(function() {
 
   $('form').submit(function(event) {
     event.preventDefault();
-    $('.error').slideUp(200);
+    $('.error').slideUp(100);
     let form = $( this ).serialize();
     let counterHTML = $(this).children('.counter')
     let numCounter = Number(counterHTML.context.innerText);
@@ -125,7 +125,6 @@ $(document).ready(function() {
         loadTweet();
         $("form")[0].reset(); // Clears form input box after submission
         $('span.counter').html('140'); // Resets counter
-        $('.error').slideUp(100);
       },
       error: function (data) {
         console.log('An error occurred.');
@@ -133,8 +132,7 @@ $(document).ready(function() {
     })
     console.log(counterHTML.context.innerText)
   } else {
-    // alert('Invalid input')
-    $('.error').slideDown(200);
+    $('.error').delay(100).slideDown(200);
   }
   })
 

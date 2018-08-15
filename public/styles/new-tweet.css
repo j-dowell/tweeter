@@ -33,5 +33,14 @@ p.tweet-text {
 }
 
 .error {
+    border-style: solid;
+    border-radius: 5px;
+    /* border-width: 10px; */
+    border-color: rgb(215, 96, 96);   
     display: none;
+    background-color: rgb(215, 96, 96);
+    /* opacity: 0.5; */
+    color: white;
+    text-align: center;
+
 }
