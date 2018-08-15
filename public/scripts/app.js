@@ -12,7 +12,6 @@ $(document).ready(function() {
     });
   })
 
-
   function getDayDifference(input) {
     var today = new Date();
     var todayMilliseconds = today.getTime();
