@@ -80,6 +80,7 @@ $(document).ready(function() {
       $text.html(insert);
       return $text
   }
+
   function renderTweets(input) {
       input.forEach(function(item) {
           var $tweet = createTweetElement(item);
@@ -87,4 +88,21 @@ $(document).ready(function() {
       })
   }
   renderTweets(data);
+
+
+  $('form').submit(function(event) {
+    event.preventDefault();
+    let form = $( this ).serialize();
+    $.ajax({
+      type: "POST",
+      url: "/tweets/",
+      data: form,
+      success: function (data) {
+        console.log('Submission was successful.');
+      },
+      error: function (data) {
+        console.log('An error occurred.');
+      }
+    })
   })
+})
