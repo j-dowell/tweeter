@@ -25,9 +25,11 @@
 .submit-tweet {
     position: relative;
 }
+
 p.tweet-text {
     margin: 0px;
 }
+
 .counter {
    position: relative;
    top: 0.2em;

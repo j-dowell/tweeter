@@ -8,6 +8,7 @@
 .tweet-container h2 {
     color: rgb(104, 115, 118);
 }
+
 article {
     background-color: rgb(240, 240, 240);
     border-radius: 5px;
@@ -59,7 +60,6 @@ article:hover i.material-icons {
     width: 2.5em;
     border-radius: 0.5em;
     transition: 0.5s;
-
 }
 
 .full-name {
@@ -70,14 +70,12 @@ article:hover i.material-icons {
     top: 10px;
     left: 60px;
     transition: 0.5s;
-
 }
 
 .tweet-container header {
     height: 50px;
     border-radius: 3px;
     transition: 0.5s;
-
 }
 
 .tweet-text {
@@ -109,4 +107,4 @@ i.material-icons {
 #text-container {
     word-wrap: break-word;
     width: 100%; 
-  }
+}
