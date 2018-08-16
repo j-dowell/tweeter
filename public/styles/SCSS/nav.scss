@@ -1,0 +1,43 @@
+$nav-icon-size: 80px;
+
+#nav-bar {
+    position: fixed;
+    height: $nav-icon-size;
+    width: 100%;
+    background-color: #00a087;
+    color: #e8fdff;
+    padding: 0 2em;
+    z-index: 10;
+
+    .logo {
+        height: $nav-icon-size;
+        width: $nav-icon-size;
+        float: left;
+    }
+    
+    .header {
+        font-size: 2rem;
+        line-height: 80px;
+        float: left;
+        margin-left: 10px;
+    }
+    
+    .compose-button {
+        opacity: 0.7;
+        float: right;
+        padding: 15px 25px;
+        font-size: 24px;
+        cursor: pointer;
+        color: rgb(0, 166, 138);
+        border-radius: 5px;
+        margin: 10px;
+        border-width: 2px;
+        border-color: black;
+    }
+
+    .compose-button:hover {
+        background-color: white;
+        opacity: 1;
+        color: black;
+    }
+}

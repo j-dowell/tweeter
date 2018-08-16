@@ -1,41 +1,39 @@
 #nav-bar {
-    position: fixed;
-    height: 80px;
-    width: 100%;
-    background-color: #00a087;
-    color: #e8fdff;
-    padding: 0 2em;
-    z-index: 10;
+  position: fixed;
+  height: 80px;
+  width: 100%;
+  background-color: #00a087;
+  color: #e8fdff;
+  padding: 0 2em;
+  z-index: 10;
 }
-
 #nav-bar .logo {
-    height: 80px;
-    width: 80px;
-    float: left;
+  height: 80px;
+  width: 80px;
+  float: left;
 }
-
 #nav-bar .header {
-    font-size: 2rem;
-    line-height: 80px;
-    float: left;
-    margin-left: 10px;
+  font-size: 2rem;
+  line-height: 80px;
+  float: left;
+  margin-left: 10px;
+}
+#nav-bar .compose-button {
+  opacity: 0.7;
+  float: right;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #00a68a;
+  border-radius: 5px;
+  margin: 10px;
+  border-width: 2px;
+  border-color: black;
+}
+#nav-bar .compose-button:hover {
+  background-color: white;
+  opacity: 1;
+  color: black;
 }
 
-.compose-button {
-    opacity: 0.7;
-    float: right;
-    padding: 15px 25px;
-    font-size: 24px;
-    cursor: pointer;
-    color: rgb(0, 166, 138);
-    border-radius: 5px;
-    margin: 10px;
-    border-width: 2px;
-    border-color: black;
-  }
-
-.compose-button:hover {
-    background-color: white;
-    opacity: 1;
-    color: black;
-}
+/*# sourceMappingURL=nav.css.map */
