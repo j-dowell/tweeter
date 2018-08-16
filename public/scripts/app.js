@@ -31,6 +31,8 @@ $(document).ready(function() {
     var userHandle = data.user.handle;
     var userContent = data.content.text;
     var days = getDayDifference(data.created_at);
+    var likes = data.likes;
+    var uniqueID = data['_id'];
 
     var insert = 
       `<header>
@@ -38,15 +40,51 @@ $(document).ready(function() {
           <img src="${userAvatar}" class="profile-photo"></img>
           <div class="handle">${userHandle}</div>
       </header>
-          <div id="text-container"><p class="tweet-text">${escape(data.content.text)}</p></div>
-      <footer>${days} days ago, ${data.likes} likes</footer>
-      <i class="material-icons">favorite</i>
+          <div id="text-container"><p class="tweet-text">${escape(userContent)}</p></div>
+      <footer>${days} days ago, <div id="likes">${likes} likes</div></footer>
+      <i data-id="${uniqueID}" class="material-icons">favorite</i>
       <i class="material-icons">flag</i>
       <i class="material-icons">cached</i>
       `
 
     $text.html(insert);
     return $text
+  }
+
+  // On favourite click - grab unique tweet id 
+  $('.tweet-container').click(function(e) {
+    event.preventDefault();
+    var target = $(event.target);
+    var id = target.context.dataset.id;
+    // console.log(id); 
+
+    if (id) {
+      let obj = { ObjectId : id };
+
+      $.post({
+        type: "POST",
+        url: `/${id}/likes`,
+        data: obj,
+        success: function(id) {
+          loadLikes(obj.ObjectId);
+        }
+        
+      })
+
+  }
+
+  })
+
+  function loadLikes(id) {
+    $.getJSON('/tweets', function(data) {
+      data.forEach(function(item) {
+        if (item['_id'] === id) {
+          let x = item.likes;
+          $(event).html(x);
+        }
+      })
+    })
+    
   }
 
   function renderTweets(input) {
@@ -76,6 +114,7 @@ $(document).ready(function() {
 
   loadAllTweets()
 
+
   // Event listener for form submit
   $('form').submit(function(event) {
     event.preventDefault();
@@ -84,6 +123,7 @@ $(document).ready(function() {
     $('.error').slideUp(100)
 
     let form = $(this).serialize();
+    
 
     // Getting value of counter (and converting to number)
     let counterHTML = $(this).children('.counter') 
