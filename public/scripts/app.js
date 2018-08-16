@@ -41,7 +41,8 @@ $(document).ready(function() {
           <div class="handle">${userHandle}</div>
       </header>
           <div id="text-container"><p class="tweet-text">${escape(userContent)}</p></div>
-      <footer>${days} days ago, <div id="likes">${likes} likes</div></footer>
+      <footer>${days} days ago, <p class="like-counter" id="${uniqueID}">${likes} likes</p>
+      </footer>
       <i data-id="${uniqueID}" class="material-icons">favorite</i>
       <i class="material-icons">flag</i>
       <i class="material-icons">cached</i>
@@ -65,7 +66,7 @@ $(document).ready(function() {
         type: "POST",
         url: `/${id}/likes`,
         data: obj,
-        success: function(id) {
+        success: function() {
           loadLikes(obj.ObjectId);
         }
         
@@ -76,11 +77,12 @@ $(document).ready(function() {
   })
 
   function loadLikes(id) {
+    
     $.getJSON('/tweets', function(data) {
       data.forEach(function(item) {
         if (item['_id'] === id) {
-          let x = item.likes;
-          $(event).html(x);
+          let x = `${item.likes} likes`;
+          $(`p#${id}`).html(x);
         }
       })
     })
