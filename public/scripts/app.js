@@ -39,7 +39,7 @@ $(document).ready(function() {
           <div class="handle">${userHandle}</div>
       </header>
           <div id="text-container"><p class="tweet-text">${escape(data.content.text)}</p></div>
-      <footer>${days} days ago</footer>
+      <footer>${days} days ago, ${data.likes} likes</footer>
       <i class="material-icons">favorite</i>
       <i class="material-icons">flag</i>
       <i class="material-icons">cached</i>
