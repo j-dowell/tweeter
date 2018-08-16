@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  
   // Slide in/out animation for compose tweet box
   $('.compose-button').on('click', function() {
     $( '.new-tweet' ).slideToggle(400, function() {
@@ -41,7 +42,8 @@ $(document).ready(function() {
       <footer>${days} days ago</footer>
       <i class="material-icons">favorite</i>
       <i class="material-icons">flag</i>
-      <i class="material-icons">cached</i>`
+      <i class="material-icons">cached</i>
+      `
 
     $text.html(insert);
     return $text
