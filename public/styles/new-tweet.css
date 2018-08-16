@@ -30,18 +30,16 @@ p.tweet-text {
 }
 .counter {
    position: relative;
-   right: -300px;
+   top: 0.2em;
+   left: 18.5em;
 }
 
 .error {
     border-style: solid;
     border-radius: 5px;
-    /* border-width: 10px; */
     border-color: rgb(215, 96, 96);   
     display: none;
     background-color: rgb(215, 96, 96);
-    /* opacity: 0.5; */
     color: white;
     text-align: center;
-
 }

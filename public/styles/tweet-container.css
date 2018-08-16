@@ -96,6 +96,7 @@ i.material-icons {
     transition: 0.5s;
     visibility: hidden;
     opacity: 0;
+    cursor: pointer;
 }
 
 .tweet-container footer {

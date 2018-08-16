@@ -47,7 +47,6 @@ $(document).ready(function() {
     return $text
   }
 
-
   function renderTweets(input) {
     // Reverses data array, to display tweets in correct order
     input.reverse(); 
@@ -72,28 +71,28 @@ $(document).ready(function() {
       renderTweets(data);
     })
   }
+
   loadAllTweets()
 
   // Event listener for form submit
   $('form').submit(function(event) {
     event.preventDefault();
+    
+    // Hide error message
+    $('.error').slideUp(100)
 
-    $('.error').slideUp(100);
+    let form = $(this).serialize();
 
-    let form = $( this ).serialize();
-
-    let counterHTML = $(this).children('.counter')
+    // Getting value of counter (and converting to number)
+    let counterHTML = $(this).children('.counter') 
     let numCounter = Number(counterHTML.context.innerText);
-  
-    // Input form validation
-    if (numCounter !== 140 && numCounter >= 0 && numCounter !== 'null') { 
 
+    if (numCounter !== 140 && numCounter >= 0 && numCounter !== 'null') { 
       $.ajax({
         type: "POST",
         url: "/tweets",
         data: form,
         success: function() {
-          console.log('Submission was successful.');
           loadNewTweet();
           $("form")[0].reset(); // Clears form input box after submission
           $('span.counter').html('140'); // Resets counter
@@ -102,9 +101,10 @@ $(document).ready(function() {
           console.log('An error occurred.');
         }
       })
-    } else {
-      // Display error message if user input is invalid
-      $('.error').delay(100).slideDown(200); 
+    } else if (numCounter === 140) { // Display error message if user input is invalid
+      $('#error1').delay(200).slideDown(200); 
+    } else if (numCounter < 0) {
+      $('#error2').delay(200).slideDown(200);
     }
   })
 })
