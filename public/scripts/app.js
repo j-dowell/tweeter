@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
   // Slide in/out animation for compose tweet box
   $('.compose-button').on('click', function() {
     $( '.new-tweet' ).slideToggle(400, function() {
@@ -25,6 +26,8 @@ $(document).ready(function() {
   // Makes html article from data object input properties
   function createTweetElement(data) {
     var $text = $("<article>").addClass("tweet");
+
+    // Tweet properties
     var userName = data.user.name;
     var userAvatar = data.user.avatars.small;
     var userHandle = data.user.handle;
@@ -33,6 +36,7 @@ $(document).ready(function() {
     var likes = data.likes;
     var uniqueID = data['_id'];
 
+    // HTML to append
     var insert = 
       `<header>
           <h2 class="full-name">${userName}</h2>
@@ -41,53 +45,51 @@ $(document).ready(function() {
       </header>
           <div id="text-container"><p class="tweet-text">${escape(userContent)}</p></div>
       <footer>${days} days ago <p class="like-counter" id="${uniqueID}">${likes} likes</p>
+      <i data-id="${uniqueID}" class="material-icons fav">favorite</i>
+      <i class="material-icons flag">flag</i>
+      <i class="material-icons retweet">cached</i>
       </footer>
-      <i data-id="${uniqueID}" class="material-icons">favorite</i>
-      <i class="material-icons">flag</i>
-      <i class="material-icons">cached</i>
+
       `
 
     $text.html(insert);
     return $text
   }
 
-  // On favourite click - grab unique tweet id 
+  // On favourite click - grab unique tweet id and increment or decrement
   $('.tweet-container').click(function(event) {
     event.preventDefault();
     var target = $(event.target);
     var id = target.context.dataset.id;
 
-
-    if (id) {
-      if ($(target).attr("id") !== 'like') {
-        console.log('is not liked')
-        let obj = { ObjectId : id, liked: false };
+    if (id) { // if element clicked has unique id  
+      if ($(target).attr("id") !== 'like') { // And if it has not been liked on this pageload. (will fix after adding user login feature)
+        let obj = { ObjectId : id, liked: false }; // Data to send in request
         $.post({
           type: "POST",
           url: `/${id}/likes`,
           data: obj, 
           success: function() {
             loadLikes(obj.ObjectId);
-            console.log($(event.target))
-            $(target).attr('id', 'like').css({ 'color': 'red'} )
+            $(target).attr('id', 'like').css({ 'color': 'red'} ) 
           }
-      })
-    } else {
-      let obj = { ObjectId : id, liked: true}
-      console.log('is liked')
-      $.post({
-        type: "POST",
-        url: `/${id}/likes`,
-        data: obj,
-        success: function() {
-          loadLikes(obj.ObjectId);
-          $(target).attr('id', '').css({ 'color': 'rgb(22, 72, 82'} )
-        }
-    })
-    }
+        })
+      } else { // it has been liked already, so if decrement like counter by one and remove class & css
+        let obj = { ObjectId : id, liked: true}
+        $.post({
+          type: "POST",
+          url: `/${id}/likes`,
+          data: obj,
+          success: function() {
+            loadLikes(obj.ObjectId);
+            $(target).attr('id', '').css({ 'color': 'rgb(22, 72, 82'} )
+          }
+        })
+      }
   }
 })
 
+  // Updates like counter for a tweet, given the tweet's unique ID
   function loadLikes(id) {
     $.getJSON('/tweets', function(data) {
       data.forEach(function(item) {
@@ -109,7 +111,7 @@ $(document).ready(function() {
     })
   }
   
-  // Fetches latest tweet
+  // Fetches & renders latest tweet
   function loadNewTweet() {
     $.getJSON('/tweets', function(data) {
       let $input = createTweetElement(data[data.length - 1]);
@@ -123,24 +125,23 @@ $(document).ready(function() {
       renderTweets(data);
     })
   }
-  loadAllTweets()
+  loadAllTweets() 
 
-  
-
-  // Event listener for form submit
+  // Tweet submit
   $('form').submit(function(event) {
     event.preventDefault();
     
     // Hide error message
     $('.error').slideUp(100)
 
+    // Data to send in ajax request
     let form = $(this).serialize();
 
     // Getting value of counter (and converting to number)
     let counterHTML = $(this).children('.counter') 
     let numCounter = Number(counterHTML.context.innerText);
 
-    if (numCounter !== 140 && numCounter >= 0 && numCounter !== 'null') { 
+    if (numCounter !== 140 && numCounter >= 0 && numCounter !== 'null') {  // Valid user input
       $.ajax({
         type: "POST",
         url: "/tweets",

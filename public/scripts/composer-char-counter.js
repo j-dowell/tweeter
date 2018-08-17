@@ -1,3 +1,4 @@
+// Live character counter for tweet input text
 $(document).ready(function() {
     $('textarea').on('keyup', function() {
         var counter = $(this).siblings('.counter')
@@ -9,6 +10,5 @@ $(document).ready(function() {
         }
     })
   });
-
 
   // To do - change css - make a class in css sheet for when its done. Toggle class 
