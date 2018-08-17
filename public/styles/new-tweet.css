@@ -49,9 +49,3 @@ p.tweet-text {
 }
 
 /*# sourceMappingURL=new-tweet.css.map */
-
-@media (max-width: 420px) {
-  .tweet {
-    /* height: 500px; */
-  }
-}
