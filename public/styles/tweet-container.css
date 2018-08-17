@@ -126,12 +126,13 @@ i.material-icons {
 }
 
 
-@media (max-width: 420px) {
+@media (max-width: 450px) {
   .tweet-container {
     width: 100%;
   }
   .container {
     width: 100%;
+    margin-left: 38px;
   }
   .new-tweet {
     width: 100%;
