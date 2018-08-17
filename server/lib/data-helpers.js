@@ -19,14 +19,18 @@ module.exports = function makeDataHelpers(db) {
       db.collection("tweets").find().toArray(callback);
     },
 
-    likeTweet: function(tweet, callback) {
-      console.log('liked!', tweet)
-      db.collection("tweets").updateOne({'_id':ObjectId(tweet)}, { $inc: {'likes': 1} } );
-      callback(null, true);
-    },
+    likeTweet: function(tweet, liked, callback) {
+      console.log('liked!', tweet, liked)
+      if (liked === 'false') {
+        db.collection("tweets").updateOne({'_id':ObjectId(tweet)}, { $inc: {'likes': 1} } );
+        console.log('incremented')
+        callback(null, true);
+      } else {
+        db.collection("tweets").updateOne({'_id':ObjectId(tweet)}, { $inc: {'likes': -1} } );
+        console.log('decremented')
+        callback(null, true);
+      } 
+    }
 
-    // unLikeTweet: function(tweet) {
-
-    // }
   }
 }

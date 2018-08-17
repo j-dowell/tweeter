@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  
   // Slide in/out animation for compose tweet box
   $('.compose-button').on('click', function() {
     $( '.new-tweet' ).slideToggle(400, function() {
@@ -41,7 +40,7 @@ $(document).ready(function() {
           <div class="handle">${userHandle}</div>
       </header>
           <div id="text-container"><p class="tweet-text">${escape(userContent)}</p></div>
-      <footer>${days} days ago, <p class="like-counter" id="${uniqueID}">${likes} likes</p>
+      <footer>${days} days ago <p class="like-counter" id="${uniqueID}">${likes} likes</p>
       </footer>
       <i data-id="${uniqueID}" class="material-icons">favorite</i>
       <i class="material-icons">flag</i>
@@ -53,31 +52,43 @@ $(document).ready(function() {
   }
 
   // On favourite click - grab unique tweet id 
-  $('.tweet-container').click(function(e) {
+  $('.tweet-container').click(function(event) {
     event.preventDefault();
     var target = $(event.target);
     var id = target.context.dataset.id;
-    // console.log(id); 
+
 
     if (id) {
-      let obj = { ObjectId : id };
-
+      if ($(target).attr("id") !== 'like') {
+        console.log('is not liked')
+        let obj = { ObjectId : id, liked: false };
+        $.post({
+          type: "POST",
+          url: `/${id}/likes`,
+          data: obj, 
+          success: function() {
+            loadLikes(obj.ObjectId);
+            console.log($(event.target))
+            $(target).attr('id', 'like').css({ 'color': 'red'} )
+          }
+      })
+    } else {
+      let obj = { ObjectId : id, liked: true}
+      console.log('is liked')
       $.post({
         type: "POST",
         url: `/${id}/likes`,
         data: obj,
         success: function() {
           loadLikes(obj.ObjectId);
+          $(target).attr('id', '').css({ 'color': 'rgb(22, 72, 82'} )
         }
-        
-      })
-
+    })
+    }
   }
-
-  })
+})
 
   function loadLikes(id) {
-    
     $.getJSON('/tweets', function(data) {
       data.forEach(function(item) {
         if (item['_id'] === id) {
@@ -86,7 +97,6 @@ $(document).ready(function() {
         }
       })
     })
-    
   }
 
   function renderTweets(input) {
@@ -113,9 +123,9 @@ $(document).ready(function() {
       renderTweets(data);
     })
   }
-
   loadAllTweets()
 
+  
 
   // Event listener for form submit
   $('form').submit(function(event) {
@@ -125,7 +135,6 @@ $(document).ready(function() {
     $('.error').slideUp(100)
 
     let form = $(this).serialize();
-    
 
     // Getting value of counter (and converting to number)
     let counterHTML = $(this).children('.counter') 
