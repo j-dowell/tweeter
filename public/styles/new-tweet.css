@@ -4,7 +4,7 @@
 
 .new-tweet {
   background-color: #f0f0f0;
-  padding: 10px;
+  padding: 10px 10px 0px 10px;
   border-radius: 5px;
   border-color: #8f8f8f;
   border-style: solid;
@@ -25,6 +25,7 @@
 
 .submit-tweet {
   position: relative;
+  top: -0.7em;
 }
 
 p.tweet-text {
@@ -33,8 +34,8 @@ p.tweet-text {
 
 .counter {
   position: relative;
-  top: 0.2em;
-  left: 18.5em;
+  top: 0.7em;
+  text-align: right;
 }
 
 .error {
@@ -48,3 +49,4 @@ p.tweet-text {
 }
 
 /*# sourceMappingURL=new-tweet.css.map */
+

@@ -87,9 +87,6 @@ article:hover i.material-icons {
 }
 
 i.material-icons {
-  /* position: relative; */
-  /* right: -13em; */
-  /* top: -3.5em; */
   transition: 0.5s;
   visibility: hidden;
   opacity: 0;
