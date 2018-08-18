@@ -24,7 +24,7 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
   const tweetsRoutes = require("./routes/tweets")(DataHelpers);
   const likeRoutes = require("./routes/likes")(DataHelpers);
 
-  // Mount the tweets routes at the "/tweets" path prefix:
+  // Mount the routes: 
   app.use("/tweets", tweetsRoutes);
   app.use("/:id/likes", likeRoutes);
   
