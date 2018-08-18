@@ -19,5 +19,7 @@ Tweeter is a simple, single-page Twitter clone.
 
 ## Screenshots
 [Compose box shown](https://github.com/j-dowell/tweeter/blob/master/docs/Compose%20Button%20Toggled.png?raw=true)
+
 [Compose box hidden](https://github.com/j-dowell/tweeter/blob/master/docs/Homepage.png?raw=true)
+
 [Like button](https://github.com/j-dowell/tweeter/blob/master/docs/Like%20Button.png)
