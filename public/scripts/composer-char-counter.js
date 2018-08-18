@@ -10,5 +10,3 @@ $(document).ready(function() {
         }
     })
   });
-
-  // To do - change css - make a class in css sheet for when its done. Toggle class 
