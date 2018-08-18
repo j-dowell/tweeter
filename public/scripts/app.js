@@ -1,5 +1,12 @@
 $(document).ready(function() {
 
+  // Slide in/out animation for compose tweet box
+  $('.compose-button').on('click', function() {
+    $( '.new-tweet' ).slideToggle(400, function() {
+      $('.text-input').focus();
+    });
+  });
+
   function renderTweets(input) {
     // Reverses data array, to display tweets in correct order
     input.reverse(); 
@@ -25,13 +32,6 @@ $(document).ready(function() {
     });
   }
   loadAllTweets();
-  
-  // Slide in/out animation for compose tweet box
-  $('.compose-button').on('click', function() {
-    $( '.new-tweet' ).slideToggle(400, function() {
-      $('.text-input').focus();
-    });
-  });
 
   // Returns time difference (in days) between input and current time
   function getDayDifference(input) {
