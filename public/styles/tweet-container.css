@@ -125,7 +125,6 @@ i.material-icons {
   top: -35px;
 }
 
-
 @media (max-width: 450px) {
   .tweet-container {
     width: 100%;
@@ -142,15 +141,7 @@ i.material-icons {
     width: 100%;
   }
 
-  .full-name {
-    visibility: hidden;
-    opacity: 0;
-  }
-
   .handle {
-    padding-top: 1.5em;
-    font-size: 2em;
-    text-align: center;
+    font-size: 0.8em;
   }
-
 }
