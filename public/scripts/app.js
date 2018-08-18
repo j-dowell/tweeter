@@ -124,7 +124,7 @@ $(document).ready(function() {
     if (id) { // if element clicked has unique id  
       if ($(target).attr("id") !== 'like') { // And if it has not been liked on this pageload. (will fix after adding user login feature)
         let obj = { ObjectId : id, liked: false }; // Data to send in request
-        $.post({
+        $.ajax({
           type: "POST",
           url: `/${id}/likes`,
           data: obj, 
@@ -135,7 +135,7 @@ $(document).ready(function() {
         });
       } else { // it has been liked already, so if decrement like counter by one and remove class & css
         let obj = { ObjectId : id, liked: true};
-        $.post({
+        $.ajax({
           type: "POST",
           url: `/${id}/likes`,
           data: obj,
