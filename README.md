@@ -2,6 +2,8 @@
 
 Tweeter is a simple, single-page Twitter clone.
 
+[Click here to visit live version, hosted with Heroku](https://peaceful-scrubland-67459.herokuapp.com/)
+
 ## Getting Started
 
 1. Install dependencies using the `npm install` command.
